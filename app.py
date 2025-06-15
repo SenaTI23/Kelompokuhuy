@@ -104,13 +104,15 @@ st.sidebar.caption("Lokasi timur-barat.")
 # Buat dataframe input untuk model
 input_df = pd.DataFrame([input_data])
 
-# Prediksi
-prediction = model.predict(input_df)[0]
+# Prediksi dalam Rupiah
+kurs_usd_to_idr = 15000  # nilai tukar USD ke Rupiah, sesuaikan jika perlu
+prediction_usd = model.predict(input_df)[0]
+prediction_idr = prediction_usd * 100000 * kurs_usd_to_idr
 
 st.markdown("---")
 st.subheader("Prediksi Harga Rumah")
-st.markdown(f"<h2 style='color:#079992;'>${prediction * 100000:.2f} USD</h2>", unsafe_allow_html=True)
-st.write("Harga prediksi dalam USD berdasarkan fitur yang kamu masukkan.")
+st.markdown(f"<h2 style='color:#079992;'>Rp {prediction_idr:,.0f} </h2>", unsafe_allow_html=True)
+st.write("Harga prediksi dalam Rupiah berdasarkan fitur yang kamu masukkan.")
 
 # Tampilkan fitur penting model
 st.markdown("---")
