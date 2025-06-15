@@ -39,18 +39,67 @@ feature_names = [
     'Population', 'AveOccup', 'Latitude', 'Longitude'
 ]
 
-# Sidebar input interaktif
-st.sidebar.header("Input Fitur Rumah")
+# Sidebar input interaktif dengan deskripsi
+st.sidebar.header("🛠️ Input Fitur Rumah")
+st.sidebar.markdown("Atur nilai fitur berikut untuk memprediksi harga rumah:")
 
 input_data = {}
-input_data['MedInc'] = st.sidebar.slider('Median Income (10k USD)', 0.5, 15.0, 3.0, 0.1)
-input_data['HouseAge'] = st.sidebar.slider('House Age (years)', 1, 52, 20)
-input_data['AveRooms'] = st.sidebar.slider('Average Rooms per House', 1.0, 10.0, 5.0, 0.1)
-input_data['AveBedrms'] = st.sidebar.slider('Average Bedrooms per House', 0.5, 5.0, 1.0, 0.1)
-input_data['Population'] = st.sidebar.slider('Population per Block', 3, 4000, 1000)
-input_data['AveOccup'] = st.sidebar.slider('Average Occupancy', 0.5, 10.0, 3.0, 0.1)
-input_data['Latitude'] = st.sidebar.slider('Latitude', 32.5, 42.0, 34.0, 0.01)
-input_data['Longitude'] = st.sidebar.slider('Longitude', -124.5, -114.3, -118.5, 0.01)
+
+input_data['MedInc'] = st.sidebar.slider(
+    label='Median Income (10k USD)',
+    min_value=0.5, max_value=15.0, value=3.0, step=0.1,
+    help='Pendapatan median per rumah dalam satuan 10 ribu USD.'
+)
+st.sidebar.caption("Nilai ini menunjukkan rata-rata pendapatan rumah tangga.")
+
+input_data['HouseAge'] = st.sidebar.slider(
+    label='House Age (tahun)',
+    min_value=1, max_value=52, value=20, step=1,
+    help='Usia rata-rata rumah dalam tahun.'
+)
+st.sidebar.caption("Semakin tua rumah, harga bisa berbeda.")
+
+input_data['AveRooms'] = st.sidebar.slider(
+    label='Average Rooms per House',
+    min_value=1.0, max_value=10.0, value=5.0, step=0.1,
+    help='Rata-rata jumlah kamar dalam rumah.'
+)
+st.sidebar.caption("Termasuk ruang tidur, tamu, dapur, dll.")
+
+input_data['AveBedrms'] = st.sidebar.slider(
+    label='Average Bedrooms per House',
+    min_value=0.5, max_value=5.0, value=1.0, step=0.1,
+    help='Rata-rata jumlah kamar tidur per rumah.'
+)
+st.sidebar.caption("Berapa kamar tidur yang tersedia.")
+
+input_data['Population'] = st.sidebar.slider(
+    label='Population per Block',
+    min_value=3, max_value=4000, value=1000, step=1,
+    help='Jumlah penduduk di sekitar blok rumah.'
+)
+st.sidebar.caption("Kepadatan penduduk memengaruhi harga.")
+
+input_data['AveOccup'] = st.sidebar.slider(
+    label='Average Occupancy',
+    min_value=0.5, max_value=10.0, value=3.0, step=0.1,
+    help='Rata-rata jumlah penghuni per rumah.'
+)
+st.sidebar.caption("Berapa orang biasanya tinggal di rumah tersebut.")
+
+input_data['Latitude'] = st.sidebar.slider(
+    label='Latitude',
+    min_value=32.5, max_value=42.0, value=34.0, step=0.01,
+    help='Letak lintang geografis rumah.'
+)
+st.sidebar.caption("Lokasi utara-selatan.")
+
+input_data['Longitude'] = st.sidebar.slider(
+    label='Longitude',
+    min_value=-124.5, max_value=-114.3, value=-118.5, step=0.01,
+    help='Letak bujur geografis rumah.'
+)
+st.sidebar.caption("Lokasi timur-barat.")
 
 # Buat dataframe input untuk model
 input_df = pd.DataFrame([input_data])
