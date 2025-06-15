@@ -4,7 +4,6 @@ import joblib
 
 # Load model yang sudah disimpan
 model = model = joblib.load('rf_california_model_small.pkl')
-
 st.title("Prediksi Harga Rumah California dengan Random Forest")
 
 st.sidebar.header("Masukkan Fitur Rumah")
