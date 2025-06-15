@@ -3,7 +3,7 @@ import pandas as pd
 import joblib
 
 # Load model yang sudah disimpan
-model = joblib.load('rf_california_model.pkl')
+model = model = joblib.load('rf_california_model_small.pkl')
 
 st.title("Prediksi Harga Rumah California dengan Random Forest")
 
